@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title></title>
+
+	<!-- Bootstrap framework -->
+	<link rel="stylesheet" href="bootstrap/css/bootstrap.min.css" />
+	<!-- jQuery UI theme -->
+	<link rel="stylesheet" href="lib/jquery-ui/css/Aristo/Aristo.css" />
+	<!-- tooltips-->
+	<link rel="stylesheet" href="lib/jBreadcrumbs/css/BreadCrumb.css" />
+	<!-- tooltips-->
+	<link rel="stylesheet" href="lib/qtip2/jquery.qtip.min.css" />
+	<!-- colorbox -->
+	<link rel="stylesheet" href="lib/colorbox/colorbox.css" />
+	<!-- code prettify -->
+	<link rel="stylesheet" href="lib/google-code-prettify/prettify.css" />
+	<!-- sticky notifications -->
+	<link rel="stylesheet" href="lib/sticky/sticky.css" />
+	<!-- aditional icons -->
+	<link rel="stylesheet" href="img/splashy/splashy.css" />
+	<!-- flags -->
+	<link rel="stylesheet" href="img/flags/flags.css" />
+	<!-- datatables -->
+	<link rel="stylesheet" href="lib/datatables/extras/TableTools/media/css/TableTools.css">
+
+	<!-- calendar -->
+	<link rel="stylesheet" href="lib/fullcalendar/fullcalendar_gebo.css" />
+
+	<!-- main styles -->
+	<link rel="stylesheet" href="css/style.css" />
+	<!-- theme color-->
+	<link rel="stylesheet" href="css/blue.css" id="link_theme" />
+
+	<!--             <link href='http://fonts.googleapis.com/css?family=PT+Sans' rel='stylesheet' type='text/css'> -->
+
+	<!-- favicon -->
+	<link rel="shortcut icon" href="favicon.ico" />
+	<script src="js/jquery.min.js"></script>
+	<!--[if lte IE 8]>
+            <link rel="stylesheet" href="css/ie.css" />
+        <![endif]-->
+
+	<!--[if lt IE 9]>
+			<script src="js/ie/html5.js"></script>
+			<script src="js/ie/respond.min.js"></script>
+			<script src="lib/flot/excanvas.min.js"></script>
+        <![endif]-->
+	<script type="text/javascript">
+		$(document).ready(function () {
+		{
+			alert(11);
+			InitLimit($("#fck1"), 192, true, function (c) {
+		                if (c >= 0) {
+		                    $("#inputedWord").text("还能输入" + c + "个字");
+		                } else {
+		                    $("#inputedWord").text("已经超过" + (-c) + "个字");
+		                }
+		            });
+		});
+		
+			 function InitLimit(txt, limit, isbyte, cb) {
+		            txt.keyup(function () {
+		                var str = txt.val();
+		                var charLen;
+		                var byteLen = 0;
+		                if (isbyte) {//原文博客：blog.csdn.net/bluceyoung   
+		                    for (var i = 0; i < str.length; i++) {
+		                        if (str.charCodeAt(i) > 255) {
+		                            byteLen += 1;
+		                        } else {
+		                            byteLen++;
+		                        }
+		                    }
+		                    charLen = Math.floor((limit - byteLen));
+		                } else {
+		                    byteLen = str.length;
+		                    charLen = limit - byteLen;
+		                }
+		                cb(charLen);
+		            });
+		        }
+	</script>
+</head>
+
+<body>
+	<div class="container">
+
+
+		<div class="row">
+			<div class="col-sm-offset-1 col-sm-10">
+
+
+				<form class="form-horizontal" role="form">
+					<div class="form-group">
+
+						<label class="col-xs-4 control-label input-sm text-right"> 起始IP地址:</label>
+						<div class="col-xs-8 ">
+							<input type="email" class="form-control  input-sm" id="inputEmail1 " placeholder=" ">
+						</div>
+
+					</div>
+					<div class="form-group ">
+						<label class="col-xs-4 control-label input-sm text-right">结束IP地址:</label>
+						<div class="col-xs-8 ">
+							<input type="password" class="form-control  input-sm" id="inputPassword1 " placeholder=" ">
+						</div>
+					</div>
+					<div class="form-group ">
+						<label class="col-xs-4 control-label input-sm text-right">备注说明:</label>
+						<div class="col-xs-8">
+							<textarea name="fck1" class="form-control" id="fck1" rows="4" cols="10"></textarea>
+						</div>
+					</div>
+					<div class="form-group ">
+						<div class="col-xs-12 text-center">
+							<span id="inputedWord" style="color: red; width: auto; text-align: left;"></span>
+						</div>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
